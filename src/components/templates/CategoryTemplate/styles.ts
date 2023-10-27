@@ -1,7 +1,6 @@
 import styled from 'styled-components/native';
 import { Input } from '../../atoms/Input';
 import { colors } from '../../../theme';
-import { Button } from '../../atoms/Button';
 
 export const Container = styled.View`
   flex: 1;
@@ -28,15 +27,5 @@ export const HighlightContainer = styled.View`
 
 export const GeneralContainer = styled.View`
   margin-top: 16px;
-`;
-
-export const ModalContainer = styled.View`
-  margin: 16px;
-  padding: 16px;
   align-items: center;
-  justify-content: center;
-`;
-
-export const ModalButton = styled(Button)`
-  margin-top: 16px;
 `;

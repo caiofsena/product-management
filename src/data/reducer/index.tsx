@@ -1,26 +1,48 @@
-import { Product } from '../../types';
+import { App } from '../../types';
 
-export function productsReducer(
-  products: Array<Product>, 
-  action: { type: string, payload: Product}) {
+export function appReducer(
+  app: App, 
+  action: { type: string, payload: App}) {
   switch (action.type) {
-  case 'set': {
-    return action.payload;
-  }
-  case 'changed': {
-    return products.map(t => {
-      if (t.id === action.payload.id) {
-        return action.payload;
+    case 'setProducts': {
+      return { 
+        ...app,
+        products: action.payload,
+      };
+    }
+    case 'changeProduct': {
+      return app.products.map(t => {
+        if (app.product.id === action.payload.product.id) {
+          return action.payload.product;
+        } else {
+          return app.product;
+        }
+      });
+    }
+    case 'setUser': {
+      return { 
+        ...app,
+        user: action.payload
+      };
+    }
+    case 'logout': {
+      return { 
+        ...app,
+        user: null
+      };
+    }
+    case 'changeUser': {
+      if (app.user.id === action.payload.user.id) {
+        return action.payload.user;
       } else {
-        return t;
+        return app.user;
       }
-    });
-  }
-  case 'deleted': {
-    return products.filter(t => t.id !== action.payload.id);
-  }
-  default: {
-    throw Error('Unknown action: ' + action.type);
-  }
+    }
+    case 'deleteUser': {
+      return app.user.id !== action.payload.user.id;
+    }
+    default: {
+      throw Error('Unknown action: ' + action.type);
+    }
   }
 }

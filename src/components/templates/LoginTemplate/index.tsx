@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './styles';
 import { Text } from '../../atoms/Text';
-import { TextMode } from '../../../enum';
+import { EnumTextMode } from '../../../enum';
 import { colors } from '../../../theme';
 
 export type LoginTemplateProps = {
@@ -13,17 +13,17 @@ export type LoginTemplateProps = {
 export function LoginTemplate({
   data,
   set,
-  onLogin
+  onLogin,
 }: LoginTemplateProps) {
 
   return (
     <S.Container>
       <S.HeaderContainer>
-        <Text mode={TextMode.TITLE_BIGGER} text='Welcome to Products' color={colors.purple} />
-        <Text mode={TextMode.LABEL} text='Enter your account to continue' color={colors.gray300} />
+        <Text mode={EnumTextMode.TITLE_BIGGER} text='Welcome to Products' color={colors.purple} />
+        <Text mode={EnumTextMode.LABEL} text='Enter your account to continue' color={colors.gray300} />
       </S.HeaderContainer>
       <S.UsernameContainer>
-        <Text mode={TextMode.LABEL} text='Username' color={colors.gray300} />
+        <Text mode={EnumTextMode.LABEL} text='Username' color={colors.gray300} />
         <S.UsernameInput 
           placeholder='Your username' 
           value={data.username} 
@@ -31,7 +31,7 @@ export function LoginTemplate({
         />
       </S.UsernameContainer>
       <S.PasswordContainer>
-        <Text mode={TextMode.LABEL} text='Password' color={colors.gray300} />
+        <Text mode={EnumTextMode.LABEL} text='Password' color={colors.gray300} />
         <S.PasswordInput 
           placeholder='Your password' 
           value={data.password} 

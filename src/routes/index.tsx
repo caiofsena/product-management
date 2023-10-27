@@ -7,10 +7,11 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors } from '../theme';
 import { Detail } from '../views/Detail';
 import { createStackNavigator } from '@react-navigation/stack';
-import { RootStackParamList } from '../types';
+import { RootBottomTabParamList, RootStackParamList } from '../types';
 import { Login } from '../views/Login';
+import { Category } from '../views/Category';
 
-const Tab = createBottomTabNavigator<RootStackParamList>();
+const Tab = createBottomTabNavigator<RootBottomTabParamList>();
 const Stack = createStackNavigator<RootStackParamList>();
 
 export function Routes() {
@@ -19,7 +20,7 @@ export function Routes() {
       <Tab.Navigator 
         sceneContainerStyle={{backgroundColor: colors.gray100}} 
         screenOptions={{
-          tabBarActiveTintColor: 'red',
+          tabBarActiveTintColor: colors.purple,
           tabBarInactiveTintColor: 'black',
           tabBarHideOnKeyboard: true
         }}>
@@ -35,7 +36,8 @@ export function Routes() {
           name='Profile'
           component={Profile}
           options={{
-            tabBarIcon: ({ size, color }) => <Icon name='account' size={size} color={color} />
+            tabBarIcon: ({ size, color }) => <Icon name='account' size={size} color={color} />,
+            headerShown: false
           }}
         />
       </Tab.Navigator>
@@ -48,6 +50,7 @@ export function Routes() {
         <Stack.Screen name='Login' component={Login}  options={{ headerShown: false }} />
         <Stack.Screen name='Products' component={ProductStack} options={{ headerShown: false }} />
         <Stack.Screen name='Detail' component={Detail} />
+        <Stack.Screen name='Category' component={Category} />
       </Stack.Navigator>
     </NavigationContainer>
   );

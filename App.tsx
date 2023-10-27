@@ -1,11 +1,11 @@
 import React from 'react';
 import { Routes } from './src/routes';
-import { ProductsProvider } from './src/data/context/ProductsProvider';
+import { AppProvider } from './src/data/context/AppProvider';
 
 export default function App(): JSX.Element {
   return (
-    <ProductsProvider>
+    <AppProvider>
       <Routes />
-    </ProductsProvider>
+    </AppProvider>
   );
 }

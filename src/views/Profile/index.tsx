@@ -1,12 +1,18 @@
-import React from 'react';
-import { Text, View } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import React, { useContext } from 'react';
+import { ProfileTemplate } from '../../components/templates/ProfileTemplate';
+import { AppContext, AppDispatch } from '../../data/context/AppProvider';
 
-export function Profile() {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>PROFILE</Text>
-      <Icon name='rocket' size={24} />
-    </View>
-  );
+export function Profile({ navigation }) {
+  const app = useContext(AppContext);
+  const dispatch = useContext(AppDispatch);
+
+  function onLogout() {
+    dispatch({
+      type: 'logout'
+    });
+    navigation.replace('Login');
+  }
+
+  if (app && app.user) return <ProfileTemplate data={app.user} onLogout={onLogout} />;
+  return null;
 }

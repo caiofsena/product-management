@@ -1,19 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { LoginTemplate } from '../../components/templates/LoginTemplate';
 import {  loginRequest } from '../../data/api';
+import { AppDispatch } from '../../data/context/AppProvider';
+import { Alert } from 'react-native';
 
 export function Login({ navigation }) {
+  const dispatch = useContext(AppDispatch);
+
   const [ username, setUsername ] = React.useState('');
   const [ password, setPassword ] = React.useState('');
 
   function onLogin() {
-    console.log('ON LOGIN: ', username, password);
-    loginRequest(username, password).then(response => {
-      console.log('LOGIN: ', response);
-      if (response) {
-        navigation.navigate('Products', { screen: 'Home' });
-      }
-    });
+    if (username && password) {
+      loginRequest(username, password).then(response => {
+        if (response) {
+          dispatch({
+            type: 'setUser',
+            payload: response.data
+          });
+          navigation.navigate('Products', { screen: 'Home' });
+        }
+      });
+    } else {
+      Alert.alert('Login', 'Informe usuário e senha');
+    }
   }
   
   return (

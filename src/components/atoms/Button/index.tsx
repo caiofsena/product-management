@@ -3,7 +3,7 @@ import { ColorValue, TouchableOpacity, TouchableOpacityProps } from 'react-nativ
 import { Picture, PictureProps } from '../Picture';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Text } from '../Text';
-import { TextMode } from '../../../enum';
+import { EnumTextMode } from '../../../enum';
 
 export type ButtonProps = TouchableOpacityProps & {
   text?: { value: string, color: ColorValue };
@@ -20,7 +20,7 @@ export function Button(
   }: ButtonProps) {
   return (
     <TouchableOpacity {...rest} >
-      {text && <Text mode={TextMode.LABEL} text={text.value} color={text.color} />}
+      {text && <Text mode={EnumTextMode.LABEL} text={text.value} color={text.color} />}
       {picture && <Picture source={picture.source} width={picture.width} height={picture.height} />}
       {icon && <Icon name={icon.name} size={icon.size} />}
     </TouchableOpacity>

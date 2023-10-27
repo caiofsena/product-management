@@ -1,18 +1,21 @@
 import React, { useContext, useEffect } from 'react';
 import { Product } from '../../types';
-import { ProductsContext, ProductsDispatch } from '../../data/context/ProductsProvider';
-import { getAllProducts } from '../../data/api';
+import { AppContext, AppDispatch } from '../../data/context/AppProvider';
+import { getAllProducts, getCategories } from '../../data/api';
 import { ShowcaseTemplate } from '../../components/templates/ShowcaseTemplate';
 import { Keyboard } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 export function Home() {
-  const products: Array<Product> = useContext(ProductsContext);
-  const dispatch = useContext(ProductsDispatch);
+  const dispatch = useContext(AppDispatch);
+  const app = useContext(AppContext);
 
   const [ searchText, setSearchText ] = React.useState('');
   const [ filteredProducts, setFilteredProducts ] = React.useState<Array<Product>>([]);
-  const highlightProducts = products.filter(item => item);
+  const [ highlightProducts, setHighlightProducts ] = React.useState<Array<Product>>([]);
+  const [ categoryProducts, setCategoryProducts ] = React.useState<Array<string>>([]);
+  const [ filterShow, setfilterShow ] = React.useState(false);
+  const [ filterSelection, setfilterSelection ] = React.useState('');
 
   const navigation = useNavigation();
 
@@ -24,23 +27,44 @@ export function Home() {
             navigation.navigate('Detail', { data: item });
           }}));
         dispatch({
-          type: 'set',
+          type: 'setProducts',
           payload: result
         });
         setFilteredProducts(result);
+        setHighlightProducts(result);
+      }
+    });
+    getCategories().then((response) => {
+      if (response) {
+        setCategoryProducts(response.data);
       }
     });
   }, []);
 
   function onSearch() {
-    const result = 
-      products.filter(item => item.title.toLowerCase().includes(searchText.toLowerCase()));
-    setFilteredProducts(result);
-    Keyboard.dismiss();
+      if (app) {
+        const result = 
+          app.products.filter(item => item.title.toLowerCase().includes(searchText.toLowerCase())) ;
+        setFilteredProducts(result);
+        Keyboard.dismiss();
+      }
   }
 
   function onChangeSearchText(text: string) {
     setSearchText(text);
+  }
+
+  function onShow() {
+    setfilterShow(true);
+  }
+
+  function onClose() {
+    setfilterShow(false);
+  }
+
+  function onFilter(category: string) {
+    navigation.navigate('Category', { data: category })
+    setfilterShow(false);
   }
 
   return (
@@ -53,7 +77,13 @@ export function Home() {
         onChangeSearchText: onChangeSearchText
       }}
       filter={{
+        list: categoryProducts,
+        selection: filterSelection,
+        visible: filterShow,
         icon: { name: 'filter', size: 28 },
+        onShow: onShow,
+        onClose: onClose,
+        onFilter: onFilter
       }}
       highlightText='Destaques'
       products={filteredProducts}

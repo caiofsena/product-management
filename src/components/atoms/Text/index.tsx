@@ -1,11 +1,11 @@
 import React from 'react';
 import { ColorValue, StyleProp, Text as TextRN, TextProps as TextRNProps, TextStyle } from 'react-native';
 import { colors } from '../../../theme';
-import { TextMode } from '../../../enum';
+import { EnumTextMode } from '../../../enum';
 
 export type TextProps = TextRNProps & {
   text: string;
-  mode: TextMode;
+  mode: EnumTextMode;
   color?: ColorValue;
 }
 

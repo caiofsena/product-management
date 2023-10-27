@@ -1,4 +1,4 @@
-export enum TextMode {
+export enum EnumTextMode {
   DETACH = 'detach',
   TITLE = 'title',
   TITLE_BIGGER = 'title-bigger',

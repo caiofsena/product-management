@@ -1,8 +1,19 @@
+export type RootBottomTabParamList = {
+  Home: undefined;
+  Profile: undefined;
+};
+
 export type RootStackParamList = {
   Login: undefined;
-  Home: undefined;
   Detail: { item: Product };
+  Category: { item: Product };
 };
+
+export type App = {
+  products: Array<Product>;
+  product: Product | null;
+  user: User | null;
+} | null;
 
 export type Product = {
   id: number;
@@ -18,4 +29,18 @@ export type Product = {
   images: Array<string>;
   highlight?: boolean;
   onPressCard?: () => void;
+}
+
+export type User = {
+  id: number;
+  username: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  gender: string;
+  image: string;
+  token: string;
+  phone: string;
+  age: number;
+  birthDate: string;
 }
