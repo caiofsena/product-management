@@ -1,7 +1,9 @@
 import React from 'react';
-import { ColorValue, Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
+import { ColorValue, TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import { Picture, PictureProps } from '../Picture';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Text } from '../Text';
+import { TextMode } from '../../../enum';
 
 export type ButtonProps = TouchableOpacityProps & {
   text?: { value: string, color: ColorValue };
@@ -18,7 +20,7 @@ export function Button(
   }: ButtonProps) {
   return (
     <TouchableOpacity {...rest} >
-      {text && <Text style={{color: text.color}}>{text.value}</Text>}
+      {text && <Text mode={TextMode.LABEL} text={text.value} color={text.color} />}
       {picture && <Picture source={picture.source} width={picture.width} height={picture.height} />}
       {icon && <Icon name={icon.name} size={icon.size} />}
     </TouchableOpacity>

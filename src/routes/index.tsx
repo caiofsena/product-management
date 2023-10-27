@@ -8,24 +8,14 @@ import { colors } from '../theme';
 import { Detail } from '../views/Detail';
 import { createStackNavigator } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
+import { Login } from '../views/Login';
 
-
-// const { Navigator, Screen } = createBottomTabNavigator();
 const Tab = createBottomTabNavigator<RootStackParamList>();
 const Stack = createStackNavigator<RootStackParamList>();
 
 export function Routes() {
   function ProductStack() {
     return (
-      <Stack.Navigator>
-        <Stack.Screen name='Home' component={Home} />
-        <Stack.Screen name='Detail' component={Detail} />
-      </Stack.Navigator>
-    );
-  }
-
-  return (
-    <NavigationContainer>
       <Tab.Navigator 
         sceneContainerStyle={{backgroundColor: colors.gray100}} 
         screenOptions={{
@@ -34,8 +24,8 @@ export function Routes() {
           tabBarHideOnKeyboard: true
         }}>
         <Tab.Screen
-          name='Products'
-          component={ProductStack}
+          name='Home'
+          component={Home}
           options={{
             tabBarIcon: ({ size, color }) => <Icon name='home' size={size} color={color} />,
             headerShown: false
@@ -49,6 +39,16 @@ export function Routes() {
           }}
         />
       </Tab.Navigator>
+    );
+  }
+
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name='Login' component={Login}  options={{ headerShown: false }} />
+        <Stack.Screen name='Products' component={ProductStack} options={{ headerShown: false }} />
+        <Stack.Screen name='Detail' component={Detail} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
