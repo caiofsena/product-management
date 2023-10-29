@@ -7,11 +7,15 @@ import { EnumTextMode } from '../../../enum';
 import { colors } from '../../../theme';
 
 export type DetailTemplateProps = {
-  data: Product
+  data: Product,
+  buttonEdit?: { text: string; visible: boolean; onPress: () => void };
+  buttonDelete?: { text: string; visible: boolean; onPress: () => void };
 }
 
 export function DetailTemplate({
-  data
+  data,
+  buttonEdit,
+  buttonDelete
 }: DetailTemplateProps) {
   return (
     <S.Container>
@@ -23,12 +27,14 @@ export function DetailTemplate({
               <Text mode={EnumTextMode.LABEL} text={data.title} color={colors.black} />
               <Text mode={EnumTextMode.LABEL} text={data.brand} color={colors.gray400} />
             </S.PrincipalValueItem>
-            <Text mode={EnumTextMode.MONEY_BIGGER} text={`$ ${data.price}`} />
+            <Text mode={EnumTextMode.MONEY_BIGGER} text={`$ ${data.price},00`} />
           </S.PrincipalValue>
-          <S.PrincipalRating>
-            <Text mode={EnumTextMode.LABEL} text='Rating' />
-            <Text mode={EnumTextMode.LABEL} text={data.rating.toString()} color={colors.gray400} />
-          </S.PrincipalRating>
+          { data.rating && 
+            <S.PrincipalRating>
+              <Text mode={EnumTextMode.LABEL} text='Rating' />
+              <Text mode={EnumTextMode.LABEL} text={data.rating.toString()} color={colors.gray400} />
+            </S.PrincipalRating> 
+          }
           <Text mode={EnumTextMode.LABEL} text='Stock' />
           <Text mode={EnumTextMode.LABEL} text={data.stock.toString()} color={colors.gray400} />
         </S.Principal>
@@ -36,6 +42,16 @@ export function DetailTemplate({
           <Text mode={EnumTextMode.LABEL} text='Details' />
           <Text mode={EnumTextMode.LABEL} text={data.description} color={colors.gray400} />
         </S.Secondary>
+        <S.Buttons>
+          { buttonEdit && buttonEdit.visible && <S.EditButton 
+            text={{ value: buttonEdit.text, color: colors.white }} 
+            onPress={buttonEdit.onPress}
+          /> }
+          { buttonDelete && buttonDelete.visible && <S.DeleteButton
+            text={{ value: buttonDelete.text, color: colors.white }} 
+            onPress={buttonDelete.onPress}
+          /> }
+        </S.Buttons>
       </S.Information>
     </S.Container>
   );

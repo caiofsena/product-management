@@ -7,10 +7,12 @@ import { Picture } from '../../atoms/Picture';
 export const Container = styled.TouchableOpacity`
   width: 150px;
   padding: 8px;
-  margin: 8px;
+  margin: 16px;
   border-radius: 8px;
-  border-color: ${colors.white};
+  border-width: 1px;
+  border-color: ${colors.gray100};
   background-color: ${colors.white};
+  elevation: 1;
 `;
 
 export const ThumbnailContainer = styled.View`

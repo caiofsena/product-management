@@ -9,10 +9,14 @@ import { colors } from '../../../theme';
 
 export type GalleryProps = {
   images: Array<string>;
+  width?: number;
+  height?: number;
 }
 
 export function Gallery({
-  images
+  images,
+  width = 130,
+  height = 200
 }: GalleryProps) {
   const [ modalVisible, setModalVisible ] = React.useState(false);
   const [ modalPicture, setModalPicture ] = React.useState('');
@@ -21,7 +25,7 @@ export function Gallery({
     return (
       <S.CardContainer>
         <Card 
-          thumbnail={{ value: item, width: 130, height: 200}} 
+          thumbnail={{ value: item, width: width, height: height}} 
           onPressCard={() => {
             setModalVisible(true);
             setModalPicture(item);
@@ -35,7 +39,7 @@ export function Gallery({
               height={350} 
               borderRadius={14} 
             />
-            <Button 
+            <S.ModalButton 
               text={{value: 'Fechar', color: colors.gray300 }} 
               onPress={() => setModalVisible(false)} 
             />
@@ -52,6 +56,15 @@ export function Gallery({
         renderItem={({ item }) => ( renderItem(item) )}
         horizontal
         showsHorizontalScrollIndicator={false}
+        ListEmptyComponent={
+          <View>
+            <Picture 
+              source={require('../../../resources/no_picture.png')} 
+              width={130} 
+              height={200} 
+            />
+          </View>
+        }
       />
     </S.Container>
   );

@@ -1,9 +1,11 @@
 import React from 'react';
 import * as S from './styles';
 import { colors } from '../../../theme';
+import { EnumTextMode } from '../../../enum';
+import { noPicture } from '../../../constants';
 
 export type CardProps = {
-  thumbnail: { value?: string; width?: number; height?: number };
+  thumbnail?: { value?: string; width?: number; height?: number };
   title?: string;
   detail?: string;
   value?: string;
@@ -11,7 +13,7 @@ export type CardProps = {
 }
 
 export function Card({
-  thumbnail = {value: require('../../../resources/no_picture.png'), width: 130, height: 100},
+  thumbnail = { value: noPicture, width: 140, height: 100 },
   title,
   detail,
   value,
@@ -26,9 +28,9 @@ export function Card({
           height={ thumbnail.height} 
         />
       </S.ThumbnailContainer>
-      { title && <S.Title mode='title-small' text={title} color={colors.gray500} numberOfLines={1} />}
-      { detail && <S.Detail mode='detail' text={detail} color={colors.gray300} numberOfLines={3} /> }
-      { value && <S.Value mode='money' text={value} /> }
+      { title && <S.Title mode={EnumTextMode.DETAIL} text={title} color={colors.gray300} numberOfLines={1} />}
+      { detail && <S.Detail mode={EnumTextMode.TITLE_SMALL} text={detail} numberOfLines={3} /> }
+      { value && <S.Value mode={EnumTextMode.MONEY} text={value} /> }
     </S.Container>
   );
 }

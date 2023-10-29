@@ -19,28 +19,28 @@ export function LoginTemplate({
   return (
     <S.Container>
       <S.HeaderContainer>
-        <Text mode={EnumTextMode.TITLE_BIGGER} text='Welcome to Products' color={colors.purple} />
-        <Text mode={EnumTextMode.LABEL} text='Enter your account to continue' color={colors.gray300} />
+        <Text mode={EnumTextMode.TITLE_BIGGER} text='Bem vindo a Produtos' color={colors.purple} />
+        <Text mode={EnumTextMode.LABEL} text='Entre com sua conta para continuar' color={colors.gray300} />
       </S.HeaderContainer>
       <S.UsernameContainer>
-        <Text mode={EnumTextMode.LABEL} text='Username' color={colors.gray300} />
+        <Text mode={EnumTextMode.LABEL} text='Nome de usuário' color={colors.gray300} />
         <S.UsernameInput 
-          placeholder='Your username' 
+          placeholder='Seu nome de usuário' 
           value={data.username} 
           onChangeText={set.username} 
         />
       </S.UsernameContainer>
       <S.PasswordContainer>
-        <Text mode={EnumTextMode.LABEL} text='Password' color={colors.gray300} />
+        <Text mode={EnumTextMode.LABEL} text='Senha' color={colors.gray300} />
         <S.PasswordInput 
-          placeholder='Your password' 
+          placeholder='Sua senha' 
           value={data.password} 
           onChangeText={set.password} 
           secureTextEntry
         />
       </S.PasswordContainer>
       <S.ButtonContainer>
-        <S.ButtonLogin text={{ value: 'Login', color: colors.white }} onPress={onLogin} />
+        <S.ButtonLogin text={{ value: 'Entrar', color: colors.white }} onPress={onLogin} />
       </S.ButtonContainer>
     </S.Container>
   );

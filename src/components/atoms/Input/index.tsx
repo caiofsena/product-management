@@ -1,6 +1,7 @@
 import React from 'react';
-import { TextInput, TextInputProps } from 'react-native';
+import { TextInputProps } from 'react-native';
 import { colors } from '../../../theme';
+import * as S from './styles';
 
 export type InputProps = TextInputProps & object
 
@@ -10,7 +11,7 @@ export function Input(
   }: InputProps) {
   const [ isFocused, setIsFocused ] = React.useState(false);
   return (
-    <TextInput
+    <S.Container
       {...rest}
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}

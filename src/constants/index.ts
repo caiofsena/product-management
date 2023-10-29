@@ -1,0 +1,1 @@
+export const noPicture = 'https://firebasestorage.googleapis.com/v0/b/products-ss.appspot.com/o/no_picture.png?alt=media&token=864711ba-ef23-4e44-9d19-8f2a416cf331&_gl=1*o32zss*_ga*MTE4NDg2NDg2NC4xNjk4NTI5MDQ4*_ga_CW55HF8NVT*MTY5ODU4MjQ0MS41LjEuMTY5ODU4NTU4OC41OC4wLjA.';

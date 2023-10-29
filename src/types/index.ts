@@ -1,12 +1,15 @@
 export type RootBottomTabParamList = {
   Home: undefined;
   Profile: undefined;
+  Manage: undefined;
 };
 
 export type RootStackParamList = {
   Login: undefined;
   Detail: { item: Product };
-  Category: { item: Product };
+  Edit: { item: Product };
+  Add: undefined;
+  Category: undefined;
 };
 
 export type App = {
