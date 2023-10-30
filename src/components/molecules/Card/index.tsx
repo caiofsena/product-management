@@ -9,6 +9,7 @@ export type CardProps = {
   title?: string;
   detail?: string;
   value?: string;
+  isFavorite?: boolean;
   onPressCard?: () => void;
 }
 
@@ -17,6 +18,7 @@ export function Card({
   title,
   detail,
   value,
+  isFavorite,
   onPressCard
 }: CardProps) {
   return (
@@ -28,7 +30,10 @@ export function Card({
           height={ thumbnail.height} 
         />
       </S.ThumbnailContainer>
-      { title && <S.Title mode={EnumTextMode.DETAIL} text={title} color={colors.gray300} numberOfLines={1} />}
+      <S.InfoContainer>
+        { title && <S.Title mode={EnumTextMode.DETAIL} text={title} color={colors.gray300} numberOfLines={1} />}
+        { isFavorite && <S.Favorite name='heart' color={colors.red} size={22} /> }
+      </S.InfoContainer>
       { detail && <S.Detail mode={EnumTextMode.TITLE_SMALL} text={detail} numberOfLines={3} /> }
       { value && <S.Value mode={EnumTextMode.MONEY} text={value} /> }
     </S.Container>

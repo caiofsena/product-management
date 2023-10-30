@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 import { colors } from '../../../theme';
 import { Button } from '../../atoms/Button';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export const Container = styled.View`
   flex: 1;
@@ -58,4 +59,8 @@ export const DeleteButton = styled(Button)`
   align-items: center;
   justify-content: center;
   background-color: ${colors.purple}
+`;
+
+export const Favorite = styled(Icon)`
+  align-self: flex-end;
 `;

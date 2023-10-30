@@ -26,6 +26,7 @@ export function Home({ navigation }) {
             const result = 
               response.data.products.map(item => ({...item, onPressCard: () => {
                 navigation.navigate('Detail', { data: item });
+                setSearchText('');
               }}));
             dispatch({
               type: 'setProducts',
@@ -93,10 +94,12 @@ export function Home({ navigation }) {
   function onFilter(category: string) {
     navigation.navigate('Category', { data: category })
     setfilterShow(false);
+    setSearchText('');
   }
 
   function onAdd() {
     navigation.navigate('Add');
+    setSearchText('');
   }
 
   return (

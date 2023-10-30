@@ -4,6 +4,9 @@ import { Card } from '../Card';
 import { Product } from '../../../types';
 import * as S from './styles';
 import { noPicture } from '../../../constants';
+import { Text } from '../../atoms/Text';
+import { EnumTextMode } from '../../../enum';
+import { formatCurrency } from 'react-native-format-currency';
 
 export type CarouselProps = {
   data: Array<Product>;
@@ -25,8 +28,9 @@ export function Carousel({
       <Card
         thumbnail={{ value: item.thumbnail ? item.thumbnail : noPicture, width: 140, height: 100 }}
         title={item.title}
+        isFavorite={item.favorite}
         detail={isHighlight ? '' : item.description}
-        value={isHighlight ? '' : `R$ ${item.price},00`}
+        value={isHighlight ? '' : formatCurrency({ amount: item.price, code: "BRL" })[0]}
         onPressCard={item.onPressCard}
       />
     );
@@ -43,6 +47,12 @@ export function Carousel({
         numColumns={ hasColumn ? 2 : 1}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
+        ListEmptyComponent=
+          {
+            <S.EmptyList>
+              <Text mode={EnumTextMode.TITLE} text='Nenhum item encontrado' />
+            </S.EmptyList>
+          }
       />
     </S.Container>
   );

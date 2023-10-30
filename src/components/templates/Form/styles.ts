@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 import { colors } from '../../../theme';
 import { Button } from '../../atoms/Button';
+import { Check } from '../../atoms/Check';
 
 export const Container = styled.ScrollView.attrs({
   contentContainerStyle: {

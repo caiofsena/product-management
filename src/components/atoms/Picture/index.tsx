@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, ImageProps, View } from 'react-native';
+import { Image, ImageProps } from 'react-native';
 
 export type PictureProps = ImageProps & {
   width?: number;

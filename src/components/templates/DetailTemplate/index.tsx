@@ -5,6 +5,7 @@ import { Text } from '../../atoms/Text';
 import { Gallery } from '../../molecules/Gallery';
 import { EnumTextMode } from '../../../enum';
 import { colors } from '../../../theme';
+import { formatCurrency } from 'react-native-format-currency';
 
 export type DetailTemplateProps = {
   data: Product,
@@ -27,7 +28,10 @@ export function DetailTemplate({
               <Text mode={EnumTextMode.LABEL} text={data.title} color={colors.black} />
               <Text mode={EnumTextMode.LABEL} text={data.brand} color={colors.gray400} />
             </S.PrincipalValueItem>
-            <Text mode={EnumTextMode.MONEY_BIGGER} text={`$ ${data.price},00`} />
+            <S.PrincipalValueItem>
+              <Text mode={EnumTextMode.MONEY_BIGGER} text={formatCurrency({ amount: data.price, code: "BRL" })[0]} />
+              { data.favorite && <S.Favorite name='heart' color={colors.red} size={32} /> }
+            </S.PrincipalValueItem>
           </S.PrincipalValue>
           { data.rating && 
             <S.PrincipalRating>

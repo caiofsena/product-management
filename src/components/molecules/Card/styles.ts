@@ -2,6 +2,7 @@ import styled from 'styled-components/native';
 import { Text } from '../../atoms/Text';
 import { colors } from '../../../theme';
 import { Picture } from '../../atoms/Picture';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 export const Container = styled.TouchableOpacity`
@@ -19,6 +20,11 @@ export const ThumbnailContainer = styled.View`
   align-items: center;
 `; 
 
+export const InfoContainer = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
 export const Thumbnail = styled(Picture)`
   border-radius: 14px;
 `; 
@@ -33,4 +39,8 @@ export const Detail = styled(Text)`
 
 export const Value = styled(Text)`
   margin-top: 20px;
+`;
+
+export const Favorite = styled(Icon)`
+  align-self: flex-end;
 `;

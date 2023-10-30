@@ -7,6 +7,7 @@ import { EnumTextMode } from '../../../enum';
 import { colors } from '../../../theme';
 import { Input } from '../../atoms/Input';
 import { Controller , useForm } from 'react-hook-form';
+import { Check } from '../../atoms/Check';
 
 export type FormTemplateProps = {
   data?: Product,
@@ -18,6 +19,7 @@ type Inputs = {
   title: string;
   description: string;
   price: number;
+  favorite: boolean;
   discountPercentage: number;
   rating: number;
   stock: number;
@@ -97,6 +99,20 @@ export function FormTemplate({
                 name="price"
               />
               {errors.price && <Text mode={EnumTextMode.NORMAL} text='Campo obrigatório' color={colors.red} />}
+              <Text mode={EnumTextMode.LABEL} text='Favorito' />
+              <Controller
+                control={control}
+                rules={{
+                  required: false,
+                }}
+                render={({ field: { onChange, value } }) => (
+                  <Check 
+                    onChangeSelection={onChange}
+                    isSelected={value}
+                  />
+                )}
+                name="favorite"
+              />
             </S.PrincipalPriceItem>
           </S.PrincipalValue>
           <Text mode={EnumTextMode.LABEL} text='Estoque' />

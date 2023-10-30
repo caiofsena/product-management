@@ -31,6 +31,7 @@ export type Product = {
   thumbnail: string;
   images: Array<string>;
   highlight?: boolean;
+  favorite?: boolean;
   onPressCard?: () => void;
 }
 
