@@ -80,6 +80,10 @@ export function Home({ navigation }) {
   }
 
   function onChangeSearchText(text: string) {
+    if (text.length === 0) {
+      if (app) setFilteredProducts(app?.products);
+      Keyboard.dismiss();
+    }
     setSearchText(text);
   }
 

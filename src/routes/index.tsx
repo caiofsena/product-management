@@ -51,8 +51,8 @@ export function Routes() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name='Products' component={ProductStack} options={{ headerShown: false }} />
         <Stack.Screen name='Login' component={Login}  options={{ headerShown: false }} />
+        <Stack.Screen name='Products' component={ProductStack} options={{ headerShown: false }} />
         <Stack.Screen name='Detail' component={Detail} options={{ title: 'Detalhes' }} />
         <Stack.Screen name='Edit' component={Edit} options={{ title: 'Editar produto' }} />
         <Stack.Screen name='Add' component={Add} options={{ title: 'Adicionar novo produto' }} />
