@@ -12,6 +12,6 @@ export const Container = styled.View<ContainerProps>`
   justify-content: center;
   width: ${({ width }) => width};
   height: ${({ height }) => height};
-  borderRadius: ${({ borderRadius }) => borderRadius};
-  backgroundColor: ${({ backgroundColor }) => backgroundColor};
+  border-radius: ${({ borderRadius }) => borderRadius};
+  background-color: ${({ backgroundColor }) => backgroundColor};
 `;
